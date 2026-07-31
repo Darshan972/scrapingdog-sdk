@@ -147,152 +147,147 @@ try {
 
 ## Supported APIs
 
-Endpoint paths and required parameters are taken from the
-[official documentation](https://www.scrapingdog.com/documentation/). Pass any
-additional optional parameters (`country`, `page`, `language`, `domain`, …)
-straight through in the params object.
+Every Scrapingdog API has its own method. They all return a Promise — resolving to parsed JSON, except `scrape` and `screenshot`, which return the raw response body. Every snippet below is copy-paste runnable: drop in your own values and add any optional parameters (`country`, `page`, `language`, `domain`, …) straight into the params object.
 
-#### Web scraping
+### Web scraping
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `scrape(...)` | `/scrape` | `url` |
-| `screenshot(...)` | `/screenshot` | `url` |
+```js
+const html = await client.scrape('https://example.com', { dynamic: true });
+const img  = await client.screenshot({ url: 'https://example.com' });
+```
 
-#### Google Search
+### Google Search
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `google(...)` | `/google` | `query` |
-| `googleImages(...)` | `/google_images` | `query` |
-| `googleVideos(...)` | `/google_videos` | `query` |
-| `googleShorts(...)` | `/google_shorts` | `query` |
-| `googleNews(...)` | `/google_news` | `query` |
-| `googleNewsV2(...)` | `/google_news/v2` | `query` |
-| `googleShopping(...)` | `/google_shopping` | `query` |
-| `googleLocal(...)` | `/google_local` | `query` |
-| `googleJobs(...)` | `/google_jobs` | `query` |
-| `googleFinance(...)` | `/google_finance` | `query` |
-| `googleAutocomplete(...)` | `/google_autocomplete` | `query` |
-| `googleAiMode(...)` | `/google/ai_mode` | `query` |
-| `googleAiOverview(...)` | `/google/ai_overview` | `url` |
-| `googleAdsTransparency(...)` | `/google/ads_transparency` | `text` |
-| `googleLens(...)` | `/google_lens` | `url` |
-| `googleImmersiveProduct(...)` | `/google_immersive_product` | `page_token` |
-| `googleFlights(...)` | `/google_flights` | `departure_id`, `arrival_id`, `outbound_date` |
-| `googleHotels(...)` | `/google_hotels` | `query`, `check_in_date`, `check_out_date` |
-| `googleTrends(...)` | `/google_trends` | `query` |
-| `googleTrendsAutocomplete(...)` | `/google_trends/autocomplete` | `query` |
-| `googleTrendsTrendingNow(...)` | `/google_trends/trending_now` | `geo` |
-| `googlePatents(...)` | `/google_patents` | `query` |
-| `googlePatentDetails(...)` | `/google_patents/details` | `patent_id` |
-| `googleScholar(...)` | `/google_scholar` | `query` |
-| `googleScholarAuthor(...)` | `/google_scholar/author` | `author_id` |
-| `googleScholarCite(...)` | `/google_scholar/cite` | `query` |
-| `googleScholarProfiles(...)` | `/google_scholar/profiles` | `mauthors` |
+```js
+await client.google({ query: 'coffee', country: 'us', page: 0 });
+await client.googleImages({ query: 'golden retriever' });
+await client.googleVideos({ query: 'nba highlights' });
+await client.googleShorts({ query: 'cooking tips' });
+await client.googleNews({ query: 'artificial intelligence' });
+await client.googleNewsV2({ query: 'artificial intelligence', country: 'us' });
+await client.googleShopping({ query: 'macbook pro' });
+await client.googleLocal({ query: 'coffee shops' });
+await client.googleJobs({ query: 'software engineer' });
+await client.googleFinance({ query: 'GOOGL:NASDAQ' });
+await client.googleAutocomplete({ query: 'how to' });
+await client.googleAiMode({ query: 'best laptops 2026' });
+await client.googleAiOverview({ url: 'https://www.google.com/search?q=what+is+web+scraping' });
+await client.googleAdsTransparency({ text: 'nike' });
+await client.googleLens({ url: 'https://i.imgur.com/HBrB8p0.png' });
+await client.googleImmersiveProduct({ page_token: 'PAGE_TOKEN_FROM_SHOPPING' });
+await client.googleFlights({ departure_id: 'JFK', arrival_id: 'LHR', outbound_date: '2026-03-05', type: 2 });
+await client.googleHotels({ query: 'hotels in Paris', check_in_date: '2026-03-05', check_out_date: '2026-03-08' });
+await client.googleTrends({ query: 'bitcoin' });
+await client.googleTrendsAutocomplete({ query: 'coffee' });
+await client.googleTrendsTrendingNow({ geo: 'US' });
+await client.googlePatents({ query: 'coffee machine' });
+await client.googlePatentDetails({ patent_id: 'patent/US11734097B1/en' });
+await client.googleScholar({ query: 'machine learning' });
+await client.googleScholarAuthor({ author_id: 'LSsXyncAAAAJ' });
+await client.googleScholarCite({ query: 'aXSw0zsAAAAJ' });
+await client.googleScholarProfiles({ mauthors: 'Geoffrey Hinton' });
+```
 
-#### Google Maps
+### Google Maps
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `googleMaps(...)` | `/google_maps` | `query` |
-| `googleMapsPlaces(...)` | `/google_maps/places` | `data_id` |
-| `googleMapsPhotos(...)` | `/google_maps/photos` | `data_id` |
-| `googleMapsPosts(...)` | `/google_maps/posts` | `data_id` |
-| `googleMapsReviews(...)` | `/google_maps/reviews` | `data_id` |
+```js
+await client.googleMaps({ query: 'restaurants in Austin' });
+await client.googleMapsPlaces({ data_id: '0x89c259af336b3341:0xa4969e07ce3108de' });
+await client.googleMapsPhotos({ data_id: '0x89c259af336b3341:0xa4969e07ce3108de' });
+await client.googleMapsPosts({ data_id: '0x89c259af336b3341:0xa4969e07ce3108de' });
+await client.googleMapsReviews({ data_id: '0x89c259af336b3341:0xa4969e07ce3108de' });
+```
 
-#### Other search engines
+### Other search engines
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `bing(...)` | `/bing/search` | `query` |
-| `bingShopping(...)` | `/bing/shopping` | `query` |
-| `duckduckgo(...)` | `/duckduckgo/search` | `query` |
-| `baidu(...)` | `/baidu/search` | `query` |
-| `universalSearch(...)` | `/search` | `query` |
+```js
+await client.bing({ query: 'coffee' });
+await client.bingShopping({ query: 'headphones' });
+await client.duckduckgo({ query: 'coffee' });
+await client.baidu({ query: 'coffee' });
+await client.universalSearch({ query: 'coffee', country: 'us' });
+```
 
-#### Amazon
+### Amazon
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `amazonProduct(...)` | `/amazon/product` | `asin` |
-| `amazonSearch(...)` | `/amazon/search` | `query` |
-| `amazonReviews(...)` | `/amazon/reviews` | `asin` |
-| `amazonOffers(...)` | `/amazon/offers` | `asin` |
-| `amazonAutocomplete(...)` | `/amazon/autocomplete` | `prefix` |
+```js
+await client.amazonProduct({ asin: 'B0CX23V2ZK', domain: 'com' });
+await client.amazonSearch({ query: 'wireless earbuds', domain: 'com' });
+await client.amazonReviews({ asin: 'B0CX23V2ZK', domain: 'com' });
+await client.amazonOffers({ asin: 'B0CX23V2ZK', domain: 'com' });
+await client.amazonAutocomplete({ prefix: 'lapt' });
+```
 
-#### Apple
+### Apple
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `appleProduct(...)` | `/apple/product` | `product_id` |
-| `appleReviews(...)` | `/apple/reviews` | `product_id` |
-| `appleAppStore(...)` | `/apple/app_store` | `term` |
+```js
+await client.appleProduct({ product_id: '1494599097' });
+await client.appleReviews({ product_id: '1494599097' });
+await client.appleAppStore({ term: 'weather' });
+```
 
-#### Walmart
+### Walmart
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `walmartProduct(...)` | `/walmart/product` | `url` |
-| `walmartSearch(...)` | `/walmart/search` | `url` |
-| `walmartReviews(...)` | `/walmart/reviews` | `url` |
-| `walmartAutocomplete(...)` | `/walmart/autocomplete` | `query` |
+```js
+await client.walmartProduct({ url: 'https://www.walmart.com/ip/12345' });
+await client.walmartSearch({ url: 'https://www.walmart.com/search?q=tv' });
+await client.walmartReviews({ url: 'https://www.walmart.com/reviews/product/12345' });
+await client.walmartAutocomplete({ query: 'tv' });
+```
 
-#### eBay / Flipkart / Myntra
+### eBay, Flipkart & Myntra
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `ebayProduct(...)` | `/ebay/product` | `url` |
-| `ebaySearch(...)` | `/ebay/search` | `url` |
-| `flipkartProduct(...)` | `/flipkart/product` | `url` |
-| `flipkartSearch(...)` | `/flipkart/search` | `url` |
-| `myntraProduct(...)` | `/myntra/product` | `url` |
-| `myntraSearch(...)` | `/myntra/search` | `url` |
+```js
+await client.ebayProduct({ url: 'https://www.ebay.com/itm/123456' });
+await client.ebaySearch({ url: 'https://www.ebay.com/sch/i.html?_nkw=laptop' });
+await client.flipkartProduct({ url: 'https://www.flipkart.com/apple-iphone-15/p/itm123' });
+await client.flipkartSearch({ url: 'https://www.flipkart.com/search?q=shoes' });
+await client.myntraProduct({ url: 'https://www.myntra.com/tshirts/roadster/.../12345/buy' });
+await client.myntraSearch({ url: 'https://www.myntra.com/shoes' });
+```
 
-#### Jobs / real estate / local
+### Jobs, real estate & local
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `indeed(...)` | `/indeed` | `url` |
-| `zillow(...)` | `/zillow` | `url` |
-| `yelp(...)` | `/yelp/search` | `find_desc` |
+```js
+await client.indeed({ url: 'https://www.indeed.com/jobs?q=developer&l=remote' });
+await client.zillow({ url: 'https://www.zillow.com/homes/for_sale/' });
+await client.yelp({ find_desc: 'plumbers', find_loc: 'San Francisco, CA' });
+```
 
-#### Profiles / X / TikTok
+### Profiles, X & TikTok
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `personProfile(...)` | `/profile` | `id` |
-| `companyProfile(...)` | `/profile` | `id` |
-| `profile(...)` | `/profile` | `type`, `id` |
-| `profilePost(...)` | `/profile/post` | `id` |
-| `xPost(...)` | `/x/post` | `tweetId` |
-| `xProfile(...)` | `/x/profile` | `profileId` |
-| `tiktokProfile(...)` | `/tiktok/profile` | `username` |
-| `tiktokPost(...)` | `/tiktok/post` | `username`, `post_id` |
-| `tiktokAds(...)` | `/tiktok/ads` | `query` |
+```js
+await client.personProfile({ id: 'williamhgates' });   // person profile
+await client.companyProfile({ id: 'microsoft' });       // company profile
+await client.profile({ type: 'profile', id: 'williamhgates' });
+await client.profilePost({ id: 'POST_ID' });
+await client.xPost({ tweetId: '1519480761749016577' });
+await client.xProfile({ profileId: 'nasa' });
+await client.tiktokProfile({ username: 'nike' });
+await client.tiktokPost({ username: 'nike', post_id: '7300000000000000000' });
+await client.tiktokAds({ query: 'shoes' });
+```
 
-#### YouTube
+### YouTube
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `youtube(...)` | `/youtube` | — |
-| `youtubeSearch(...)` | `/youtube` | `search_query` |
-| `youtubeVideo(...)` | `/youtube` | `video_id` |
-| `youtubeChannel(...)` | `/youtube` | `channel_id` |
-| `youtubeComments(...)` | `/youtube` | `v` |
-| `youtubeTranscripts(...)` | `/youtube` | `v` |
+```js
+await client.youtube({ v: '0e3GPea1Tyg' });            // generic /youtube passthrough
+await client.youtubeSearch({ search_query: 'lofi hip hop' });
+await client.youtubeVideo({ video_id: '0e3GPea1Tyg' });
+await client.youtubeChannel({ channel_id: 'UCX6OQ3DkcsbYNE6H8uQQuVA' });
+await client.youtubeComments({ v: '0e3GPea1Tyg' });
+await client.youtubeTranscripts({ v: '0e3GPea1Tyg' });
+```
 
-#### AI / account
+### AI & account
 
-| Method | Endpoint | Required |
-|---|---|---|
-| `chatgpt(...)` | `/chatgpt` | `prompt` |
-| `account(...)` | `/account` | — |
+```js
+await client.chatgpt({ prompt: 'Explain web scraping in one sentence' });
+await client.account();
+```
 
-> `personProfile`, `companyProfile`, and `profile` all use the `/profile`
-> Profile Scraper endpoint, differing only by the `type` they send. The
-> `youtube*` methods likewise share the `/youtube` endpoint, differing only by
-> which parameter you pass.
+> **Shared endpoints:** `personProfile`, `companyProfile`, and `profile` all hit `/profile`, differing only by the `type` they send; the `youtube*` methods likewise share `/youtube`. Anything without a dedicated method is still reachable via `client.get('/path', { ... })`. Endpoint paths and required parameters are also documented in the bundled TypeScript types and the [official docs](https://www.scrapingdog.com/documentation/).
+
 
 ## Requirements
 
