@@ -11,7 +11,7 @@ and CAPTCHAs for you.
 - **Complete coverage** — a dedicated method for **every** Scrapingdog API
   (77 in all; see the [full list](#supported-apis)), plus a generic `get()`
   for anything added in the future.
-- Zero dependencies — uses the built-in `fetch` (Node.js 18+).
+- Zero dependencies — uses the built-in `fetch` (Node.js 20+).
 - Promise-based and `async/await` friendly.
 - Bundled TypeScript type definitions.
 - Required-parameter validation and automatic JSON parsing.
@@ -296,7 +296,7 @@ straight through in the params object.
 
 ## Requirements
 
-- Node.js **18 or newer** (for the global `fetch`). On older versions, pass a
+- Node.js **20 or newer** (for the global `fetch`). On older versions, pass a
   `fetch` implementation via the `fetch` option.
 
 ## Links

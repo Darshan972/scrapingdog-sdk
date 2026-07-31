@@ -43,7 +43,7 @@ class ScrapingDog {
 
     if (typeof this.fetch !== 'function') {
       throw new Error(
-        'Global fetch is not available. Use Node.js >= 18, or pass options.fetch.'
+        'Global fetch is not available. Use Node.js >= 20, or pass options.fetch.'
       );
     }
 
