@@ -191,8 +191,6 @@ export class ScrapingDog {
   profile(params?: Params | string, options?: RequestOptions): Promise<any>;
   /** /profile/post — required: `id`. */
   profilePost(params?: Params | string, options?: RequestOptions): Promise<any>;
-  /** /linkedin — required: `type`, `linkId`. */
-  linkedin(params?: Params | string, options?: RequestOptions): Promise<any>;
   /** /x/post — required: `tweetId`. */
   xPost(params?: Params | string, options?: RequestOptions): Promise<any>;
   /** /x/profile — required: `profileId`. */

@@ -92,14 +92,12 @@ const ENDPOINTS = {
   zillow: { path: '/zillow', required: ['url'] },
   yelp: { path: '/yelp/search', required: ['find_desc'] },
 
-  // ---- Social: LinkedIn / X / TikTok -----------------------------------
-  // Profile Scraper API (LinkedIn person & company profiles).
+  // ---- Social: Profiles / X / TikTok -----------------------------------
+  // Profile Scraper API (person & company profiles).
   personProfile: { path: '/profile', required: ['id'], defaults: { type: 'profile' } },
   companyProfile: { path: '/profile', required: ['id'], defaults: { type: 'company' } },
   profile: { path: '/profile', required: ['type', 'id'] },
   profilePost: { path: '/profile/post', required: ['id'] },
-  // Legacy LinkedIn endpoint (still supported by the API).
-  linkedin: { path: '/linkedin', required: ['type', 'linkId'] },
 
   xPost: { path: '/x/post', required: ['tweetId'] },
   xProfile: { path: '/x/profile', required: ['profileId'] },

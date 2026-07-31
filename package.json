@@ -1,7 +1,7 @@
 {
   "name": "scrapingdog-sdk",
   "version": "1.0.0",
-  "description": "Official Node.js SDK for the Scrapingdog API — scrape any website and get structured data from Google, Amazon, LinkedIn, and 60+ more scrapers.",
+  "description": "Official Node.js SDK for the Scrapingdog API — scrape any website and get structured data from Google, Amazon, YouTube, and 60+ more scrapers.",
   "main": "src/index.js",
   "types": "index.d.ts",
   "files": [
@@ -26,7 +26,6 @@
     "serp",
     "google-search",
     "amazon",
-    "linkedin",
     "api",
     "sdk"
   ],

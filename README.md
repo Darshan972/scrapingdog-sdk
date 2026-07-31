@@ -4,12 +4,12 @@
 [![license](https://img.shields.io/npm/l/scrapingdog-sdk.svg)](./LICENSE)
 
 Node.js SDK for the [Scrapingdog](https://www.scrapingdog.com) API. Scrape any
-website and get structured results from Google, Amazon, LinkedIn, YouTube,
-TikTok, and dozens more scrapers. Scrapingdog handles proxy rotation, headless
-browsers, and CAPTCHAs for you.
+website and get structured results from Google, Amazon, YouTube, TikTok, and
+dozens more scrapers. Scrapingdog handles proxy rotation, headless browsers,
+and CAPTCHAs for you.
 
 - **Complete coverage** — a dedicated method for **every** Scrapingdog API
-  (78 in all; see the [full list](#supported-apis)), plus a generic `get()`
+  (77 in all; see the [full list](#supported-apis)), plus a generic `get()`
   for anything added in the future.
 - Zero dependencies — uses the built-in `fetch` (Node.js 18+).
 - Promise-based and `async/await` friendly.
@@ -73,8 +73,8 @@ await client.amazonProduct({ asin: 'B0CX23V2ZK', domain: 'com' });
 await client.walmartSearch({ url: 'https://www.walmart.com/search?q=tv' });
 
 // Social.
-await client.personProfile({ id: 'williamhgates' });   // LinkedIn person
-await client.companyProfile({ id: 'microsoft' });        // LinkedIn company
+await client.personProfile({ id: 'williamhgates' });   // person profile
+await client.companyProfile({ id: 'microsoft' });        // company profile
 await client.tiktokProfile({ username: 'nike' });
 await client.xProfile({ profileId: 'nasa' });
 
@@ -257,7 +257,7 @@ straight through in the params object.
 | `zillow(...)` | `/zillow` | `url` |
 | `yelp(...)` | `/yelp/search` | `find_desc` |
 
-#### LinkedIn / X / TikTok
+#### Profiles / X / TikTok
 
 | Method | Endpoint | Required |
 |---|---|---|
@@ -265,7 +265,6 @@ straight through in the params object.
 | `companyProfile(...)` | `/profile` | `id` |
 | `profile(...)` | `/profile` | `type`, `id` |
 | `profilePost(...)` | `/profile/post` | `id` |
-| `linkedin(...)` | `/linkedin` | `type`, `linkId` |
 | `xPost(...)` | `/x/post` | `tweetId` |
 | `xProfile(...)` | `/x/profile` | `profileId` |
 | `tiktokProfile(...)` | `/tiktok/profile` | `username` |
@@ -290,10 +289,10 @@ straight through in the params object.
 | `chatgpt(...)` | `/chatgpt` | `prompt` |
 | `account(...)` | `/account` | — |
 
-> `personProfile`, `companyProfile`, and `profile` all use the LinkedIn Profile
-> Scraper endpoint. `linkedin` is the older LinkedIn endpoint, kept for
-> convenience. `youtube*` methods share the `/youtube` endpoint, differing only
-> by which parameter you pass.
+> `personProfile`, `companyProfile`, and `profile` all use the `/profile`
+> Profile Scraper endpoint, differing only by the `type` they send. The
+> `youtube*` methods likewise share the `/youtube` endpoint, differing only by
+> which parameter you pass.
 
 ## Requirements
 
