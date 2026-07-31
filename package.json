@@ -1,0 +1,43 @@
+{
+  "name": "scrapingdog-sdk",
+  "version": "1.0.0",
+  "description": "Official Node.js SDK for the Scrapingdog API — scrape any website and get structured data from Google, Amazon, LinkedIn, and 60+ more scrapers.",
+  "main": "src/index.js",
+  "types": "index.d.ts",
+  "files": [
+    "src/",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "scrapingdog",
+    "scraping",
+    "web-scraping",
+    "scraper",
+    "crawler",
+    "proxy",
+    "serp",
+    "google-search",
+    "amazon",
+    "linkedin",
+    "api",
+    "sdk"
+  ],
+  "author": "Scrapingdog",
+  "license": "MIT",
+  "homepage": "https://www.scrapingdog.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darshan972/scrapingdog-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Darshan972/scrapingdog-sdk/issues"
+  }
+}
